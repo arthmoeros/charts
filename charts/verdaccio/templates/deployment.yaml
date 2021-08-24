@@ -80,6 +80,10 @@ spec:
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.commandOverride }}
+          command: "{{ .Values.commandOverride.command }}"
+          args: "{{ .Values.commandOverride.args }}"
+          {{- end }}
       volumes:
       - name: config
         configMap:
