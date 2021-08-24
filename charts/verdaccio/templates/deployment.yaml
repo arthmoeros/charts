@@ -81,8 +81,10 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.commandOverride }}
-          command: "{{ .Values.commandOverride.command | nindent 4}}"
-          args: "{{ .Values.commandOverride.args | nindent 4 }}"
+          command: {{- range .Values.commandOverride.command }}
+            - {{.}}{{- end }}
+          args: {{- range .Values.commandOverride.args }}
+            - {{.}}{{- end }}
           {{- end }}
       volumes:
       - name: config
