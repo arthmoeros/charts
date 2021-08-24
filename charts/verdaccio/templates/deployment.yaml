@@ -81,9 +81,9 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- with .Values.commandOverride }}
-          command: {{- range .Values.commandOverride.command }}
+          command: {{- range .command }}
             - {{.}}{{- end }}
-          args: {{- range .Values.commandOverride.args }}
+          args: {{- range .args }}
             - {{.}}{{- end }}
           {{- end }}
       volumes:
